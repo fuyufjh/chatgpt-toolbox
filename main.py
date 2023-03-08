@@ -13,15 +13,13 @@ with tab_translate:
     option_target = st.selectbox('Output language',
                         ('chinese (simplified)', 'chinese (traditional)', 'english', 'french', 'german', 'italian', 'japanese', 'russian', 'spanish'))
 
-    if st.button('Translate'):
-        if text == "":
-            st.warning('Please **enter text** for translation')
+    if st.button('Translate') or text != "":
+        result = translate(text, option_target)
+        st.info(str(result))
 
-        else:
-            result = translate(text, option_target)
-            st.info(str(result))
-
-            st.success("Translation is **successfully** completed!")
+        st.success("Translation is **successfully** completed!")
+    else if st.button('Translate') and text == "":
+        st.warning('Please **enter text** for translation')
     else:
         pass
 
